@@ -26,7 +26,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #333;
+            background-color: #021806;
             padding: 0.5rem 1rem;
             color: white;
           }
@@ -57,4 +57,21 @@
       
           .nav-links a:hover {
             color: #ff9800;
+          }
+
+          #logo-on-navbar {
+            width: 80px;   /* try 60–100px depending on your logo */
+            height: auto;  /* keeps correct proportions */
+            object-fit: contain;
+            display: block;
+            filter: brightness(0) invert(1); /* makes black → white */
+          }
+          #pareto-gif{
+            width: 400px;
+            height: auto;
+          }
+
+
+          #tutorial-list > li > a{
+            font-size: 2rem;
           }
