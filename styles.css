@@ -5,7 +5,7 @@
             background-color: #e5e8e8;
         }
         header {
-            background-color: #333;
+            background-color: #0b3112;;
             color: #fff;
             padding: 10px 20px;
         }
@@ -17,7 +17,7 @@
             padding: 20px;
         }
         footer {
-            background-color: #333;
+            background-color: #0b3112;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
@@ -26,7 +26,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #021806;
+            background-color: #0b3112;
             padding: 0.5rem 1rem;
             color: white;
           }
@@ -75,3 +75,36 @@
           #tutorial-list > li > a{
             font-size: 2rem;
           }
+
+
+          /* Two-column layout for features + gif */
+.features-row {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* tweak to 1fr 1fr if you want equal widths */
+  gap: 2rem;
+  align-items: start;
+}
+
+#rodop-plus-features ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+}
+
+#pareto-wrap img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;     /* optional */
+}
+
+/* Stack on small screens */
+@media (max-width: 820px) {
+  .features-row {
+    grid-template-columns: 1fr;
+  }
+}

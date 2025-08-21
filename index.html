@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>RODOP+</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>RODOP+</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-left">
-          <img id = "logo-on-navbar" src= "./images/logo-wo-background.png" alt="Logo">
+  <header>
+    <nav class="navbar" aria-label="Primary">
+      <a class="nav-left" href="./index.html" aria-label="RODOP+ home">
+        <img id="logo-on-navbar" src="./images/logo-wo-background.png" alt="RODOP+ logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="./docs.html">Docs</a></li>
+        <li><a href="./tutorials.html">Tutorials</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="features-row">
+        <div id="rodop-plus-features">
+          <ul>
+            <li><strong>Design Space Exploration:</strong> RODOP+ helps you explore and optimize design spaces efficiently.</li>
+            <li><strong>Faster Development:</strong> ML-based optimization and smart scheduling cut time and cost.</li>
+            <li><strong>Rapid Deployment and Easy Maintenance:</strong> Users can start optimizing without having deep knowledge, modular approach to ease maintenance</li>
+            <li><strong>Multidisciplinary Optimization:</strong> Handles multiple disciplines and their interactions coherently.</li>
+            <li><strong>Hybrid Strategies:</strong> Can utilize gradient based strategies to boost optimization performace</li>
+          </ul>
         </div>
-        <ul class="nav-links">
-          <li><a href="./docs.html">Docs</a></li>
-          <li><a href="./tutorials.html">Tutorials</a></li>
-        </ul>
-      </nav>
-    <section>
-        <h1>About RODOP+</h1>
-        <p>RODOP+ is a design optimization software, which is suitable for non-linear optimization 
-            problems, where the objective function and/or design constraints are evaluated by performing 
-            computationally expensive simulation processes. 
-         </p>
-        <p>
-            <ul>
-                <li>Global constrained optimization </li>
-                <li>Machine learning based data-driven approach</li>
-                <li>Gradient enhancement</li>             
-                <li>Mixed-integer optimization </li> 
-                <li>Hyper-parameter optimization for expensive machine learning models </li>
-                <li>Constraints as black-box proccesses and/or user defined functions (UDFs)</li>
-            </ul>
-        </p>
-    </section>
+      
+        <div id="pareto-wrap">
+          <img src="./images/pareto.gif" alt="Pareto front demo animation" />
+        </div>
+      </section>
+      
+  </main>
 
-    <section>
-        <img id = "pareto-gif" src="./images/pareto.gif" alt="demo animation">
-    </section>
-
-    <footer>
-        <p>&copy; 2025. All rights reserved.</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025. All rights reserved.</p>
+  </footer>
 </body>
 </html>
-
