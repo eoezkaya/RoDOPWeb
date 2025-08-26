@@ -59,6 +59,18 @@
             color: #ff9800;
           }
 
+          .nav-links .nav-icon {
+            width: 28px;   /* was 18px */
+            height: 28px;
+            vertical-align: middle;
+            filter: brightness(0) invert(1); /* ensures it shows on dark background */
+            transition: transform 0.2s ease;
+          }
+          
+          .nav-links .nav-icon:hover {
+            transform: scale(1.15);
+          }
+
           #logo-on-navbar {
             width: 80px;   /* try 60–100px depending on your logo */
             height: auto;  /* keeps correct proportions */
