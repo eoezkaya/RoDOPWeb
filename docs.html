@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>Tutorials</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./navbar.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./docs.css" /> <!-- optional, if docs needs custom styles -->
+  <title>Docs — RODOP+</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-left">
-          <img src="https://via.placeholder.com/40" alt="Logo">
-          <h2>MySite</h2>
-        </div>
-        <ul class="nav-links">
-          <li><a href="./docs.html">Docs</a></li>
-          <li><a href="./tutorials.html">Tutorials</a></li>
-        </ul>
-      </nav>
+  <!-- Navbar is injected dynamically -->
+  <header id="navbar-container"></header>
+
+  <main>
     <section>
-       <h1>Tutorials</h1>
+      <h1>Documentation</h1>
+      <p>Welcome to the RODOP+ documentation. Here you’ll find guides, API references, and examples.</p>
     </section>
-    <footer>
-        <p>&copy; 2025. All rights reserved.</p>
-    </footer>
+  </main>
+
+  <footer>
+    <p>&copy; 2025. All rights reserved.</p>
+  </footer>
+
+  <!-- Script to load shared navbar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/navbar.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("navbar-container").innerHTML = html;
+        })
+        .catch(console.error);
+    });
+  </script>
 </body>
 </html>
-

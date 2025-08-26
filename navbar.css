@@ -1,0 +1,64 @@
+/* NAVBAR STYLES */
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0b3112;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+/* Logo */
+#logo-on-navbar {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Nav links container */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Nav links */
+.nav-links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-links li a:hover {
+  color: #ff9800;
+}
+
+/* Icon-only buttons (e.g. Home) */
+.nav-links .nav-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.nav-links li a:hover .nav-icon {
+  transform: scale(1.15);
+}
+
+/* Accessibility */
+.nav-links li a:focus-visible {
+  outline: 2px solid #ff9800;
+  outline-offset: 2px;
+}
+

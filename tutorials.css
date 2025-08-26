@@ -1,0 +1,28 @@
+/* tutorials.css */
+
+/* Remove bullets */
+#tutorial-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Space out items */
+#tutorial-list li {
+  margin: 0.8rem 0;
+}
+
+/* Link style */
+#tutorial-list li a {
+  text-decoration: none;   /* no underline */
+  color: inherit;          /* same as body text */
+  font-size: 2rem;         /* large, readable */
+  font-weight: normal;
+  transition: color 0.2s ease;
+}
+
+/* Hover effect (optional, matches navbar style) */
+#tutorial-list li a:hover {
+  color: #ff9800;
+}
+

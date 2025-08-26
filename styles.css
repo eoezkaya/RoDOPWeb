@@ -22,62 +22,11 @@
             padding: 10px 20px;
             text-align: center;
         }
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #0b3112;
-            padding: 0.5rem 1rem;
-            color: white;
-          }
+        
       
-          .navbar img {
-            height: 40px;
-            width: auto;
-            margin-right: 1rem;
-          }
-      
-          .nav-left {
-            display: flex;
-            align-items: center;
-          }
-      
-          .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-          }
-      
-          .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            transition: color 0.3s;
-          }
-      
-          .nav-links a:hover {
-            color: #ff9800;
-          }
-
-          .nav-links .nav-icon {
-            width: 28px;   /* was 18px */
-            height: 28px;
-            vertical-align: middle;
-            filter: brightness(0) invert(1); /* ensures it shows on dark background */
-            transition: transform 0.2s ease;
-          }
           
-          .nav-links .nav-icon:hover {
-            transform: scale(1.15);
-          }
 
-          #logo-on-navbar {
-            width: 80px;   /* try 60–100px depending on your logo */
-            height: auto;  /* keeps correct proportions */
-            object-fit: contain;
-            display: block;
-            filter: brightness(0) invert(1); /* makes black → white */
-          }
+          
           #pareto-gif{
             width: 400px;
             height: auto;

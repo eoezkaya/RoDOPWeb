@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./navbar.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./tutorials.css" />
     <title>Robust Design Optimization Package: RODOP+</title>
-</head>
+  </head>
+  
+  
 
 <body>
-    <nav class="navbar">
-        <div class="nav-left">
-          <img id = "logo-on-navbar" src= "./images/logo-wo-background.png" alt="Logo">
-        </div>
-        <ul class="nav-links">
-          <li><a href="./docs.html">Docs</a></li>
-          <li><a href="./tutorials.html">Tutorials</a></li>
-        </ul>
-      </nav>
+  <header id="navbar-container"></header>
+
+  <main>
     <section>
-       
-        <ul, id = "tutorial-list">
-
-            <li><a href="./Rosenbrock_constrained.html"> Constrained optimization of the 2D Rosenbrock function </a> </li>
-
-
-        </ul>
-
+      <ul id="tutorial-list">
+        <li>
+          <a href="./Rosenbrock_constrained.html">
+            Constrained optimization of the 2D Rosenbrock function
+          </a>
+        </li>
+      </ul>
     </section>
-    <footer>
-        <p>&copy; 2025. All rights reserved.</p>
-    </footer>
+  </main>
+
+  <footer>
+    <p>&copy; 2025. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/navbar.html")                 // use root path to work from subpages too
+        .then(r => r.text())
+        .then(html => { 
+          const slot = document.getElementById("navbar-container");
+          if (slot) slot.innerHTML = html;
+        })
+        .catch(console.error);
+    });
+  </script>
 </body>
 </html>
-
