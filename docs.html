@@ -27,7 +27,7 @@
   <!-- Script to load shared navbar -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("/navbar.html")
+      fetch("navbar.html")
         .then(r => r.text())
         .then(html => {
           document.getElementById("navbar-container").innerHTML = html;

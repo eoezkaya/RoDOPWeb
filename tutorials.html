@@ -34,7 +34,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("/navbar.html")                 // use root path to work from subpages too
+      fetch("navbar.html")                 // use root path to work from subpages too
         .then(r => r.text())
         .then(html => { 
           const slot = document.getElementById("navbar-container");
