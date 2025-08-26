@@ -1,0 +1,43 @@
+name: Deploy static site to EC2
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trust EC2 host key (avoid interactive prompt)
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Stage files on EC2 via rsync
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -az --delete --exclude=".git/" --exclude=".github/"
+          path: ./                 # change if your site is in a subfolder
+          remote_path: /home/${{ secrets.EC2_USER }}/site_release/
+          remote_host: ${{ secrets.EC2_HOST }}
+          remote_user: ${{ secrets.EC2_USER }}
+          remote_key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Publish to /usr/share/nginx/html
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -euo pipefail
+            sudo rsync -a --delete /home/${USER}/site_release/ /usr/share/nginx/html/
+            sudo find /usr/share/nginx/html -type d -exec chmod 755 {} \;
+            sudo find /usr/share/nginx/html -type f -exec chmod 644 {} \;
+            command -v restorecon >/dev/null 2>&1 && sudo restorecon -R /usr/share/nginx/html || true
+            command -v systemctl  >/dev/null 2>&1 && sudo systemctl reload nginx || true
+

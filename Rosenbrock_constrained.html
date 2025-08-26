@@ -9,11 +9,10 @@
   <!-- MathJax for LaTeX rendering -->
   <script>
     window.MathJax = {
-      tex: { inlineMath: [["$","$"],["\\(","\\)"]], displayMath: [["$$","$$"],["\\[","\\]"]] },
-      svg: { fontCache: 'global' }
+      tex: { inlineMath: [["$","$"],["\\(","\\)"]], displayMath: [["$$","$$"],["\\[","\\]"]] }
     };
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
   <style>
     :root {
@@ -54,15 +53,14 @@
       padding: 1rem;
     }
 
-
     img.centered {
-  display: block;         /* required for margin auto to work */
-  margin-inline: auto;    /* center horizontally */
-  height: auto;
-  max-width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border, #e5e7eb);
-}
+      display: block;         /* required for margin auto to work */
+      margin-inline: auto;    /* center horizontally */
+      height: auto;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border, #e5e7eb);
+    }
 
     img.responsive { max-width: 50%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--border); }
 
@@ -71,9 +69,29 @@
       font-size: 0.95rem;
     }
     pre {
+      position: relative;
       margin: 0.75rem 0; padding: 0.9rem 1rem; border-radius: 12px;
       background: var(--code-bg); border: 1px solid var(--border);
       overflow: auto;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--panel);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      color: #fff;
     }
 
     .note { color: var(--muted); font-size: 0.95rem; }
@@ -86,7 +104,7 @@
   <header>
     <div class="container">
       <h1 class="title">Minimizing the Rosenbrock function with Nonlinear Constraints</h1>
-      <p class="subtitle">Example minimizing the 2D Rosenbrock function with two external nonlinear constraints. This test case mimics a design optimization problem, 
+      <p class="subtitle">Example minimizing the 2D Rosenbrock function with two external nonlinear constraints. This test case mimics a design optimization problem,
         where the objective function depends on two continuous parameters and is restricted by two constraints.
       </p>
     </div>
@@ -95,7 +113,7 @@
   <main class="container">
     <section id="description" class="panel">
       <h2>Description</h2>
-      <p>In this turoial, the <strong>2D Rosenbrock function</strong> is minimized with two external non-linear constraints. The optimization problem is:</p>
+      <p>In this tutorial, the <strong>2D Rosenbrock function</strong> is minimized with two external nonlinear constraints. The optimization problem is:</p>
       <p>$$\text{minimize}\quad f(x_1, x_2) = (1 - x_1)^2 + 100\,(x_2 - x_1^2)^2$$</p>
       <p>$$\text{subject to}\quad x_2 - x_1^2 > 0,\quad (x_1 - 1)^3 - x_2 + 0.7 > 0,\\ -1.5 \le x_1 \le 1.5\;\;\text{and}\;\; -0.5 \le x_2 \le 2.5.$$</p>
       <p>The contour plot below shows the objective function; the shaded region indicates the feasible region.</p>
@@ -103,49 +121,41 @@
     </section>
 
     <section id="xml-file" class="panel">
-      <h2>Preparing the xml configuration file</h2>
-      <p> Before running the optimization, we need to prapare an xml file. Each optimization study is denoted by the <code>&ltoptimization_study&gt</code> tag in the xml file.</p>
+      <h2>Preparing the XML configuration file</h2>
+      <p> Before running the optimization, we need to prepare an XML file. Each optimization study is denoted by the <code>&lt;optimization_study&gt;</code> tag in the XML file.</p>
 
       <p> Within this tag, we have a section where the general settings for the optimization study are specified. The parameters for this section are:</p>
       <ol>
-        <il> The name of the problem: Denoted by the <code> &ltname&gt</code> </il> <br> 
-        <il> Problem dimension: Denoted by the <code> &ltdimension&gt</code> </il> <br>
-        <il> Number of function evaluations: Denoted by the <code> &ltnumber_of_function_evaluations&gt</code>. This parameter specifies how many samples are allowed in the optimization process.  </il> <br>
-        <il> Maximum number of inner iterations (optional): <code> &ltmax_number_of_inner_iterations&gt</code>. This parameter specifies the number of inner iterations used while maximizing the acqusition function. </il> <br>
-        <il> Number of threads: Denoted by <code> &ltnumber_of_threads&gt</code></il>
+        <li>The name of the problem: denoted by <code>&lt;name&gt;</code></li>
+        <li>Problem dimension: denoted by <code>&lt;dimension&gt;</code></li>
+        <li>Number of function evaluations: denoted by <code>&lt;number_of_function_evaluations&gt;</code>. This parameter specifies how many samples are allowed in the optimization process.</li>
+        <li>Maximum number of inner iterations (optional): <code>&lt;max_number_of_inner_iterations&gt;</code>. This parameter specifies the number of inner iterations used while maximizing the acquisition function.</li>
+        <li>Number of threads: denoted by <code>&lt;number_of_threads&gt;</code></li>
       </ol>
 
-      <p> For our problem, the general settings section is:</p> 
-      <pre><code> 
-        &lt;general_settings&gt;
-          &lt;name&gt;ROSENBROCK&lt;/name&gt;
-          &lt;type&gt;Optimization&lt;/type&gt;
-          &lt;dimension&gt;2&lt;/dimension&gt;
-          &lt;number_of_function_evaluations&gt;50&lt;/number_of_function_evaluations&gt;
-          &lt;max_number_of_inner_iterations&gt;200000&lt;/max_number_of_inner_iterations&gt;
-        &lt;general_settings&gt</code></pre>
-   
+      <p>For our problem, the general settings section is:</p>
+      <pre><code>&lt;general_settings&gt;
+  &lt;name&gt;ROSENBROCK&lt;/name&gt;
+  &lt;type&gt;Optimization&lt;/type&gt;
+  &lt;dimension&gt;2&lt;/dimension&gt;
+  &lt;number_of_function_evaluations&gt;50&lt;/number_of_function_evaluations&gt;
+  &lt;max_number_of_inner_iterations&gt;200000&lt;/max_number_of_inner_iterations&gt;
+&lt;/general_settings&gt;</code></pre>
 
+      <p>The next step in the XML file is the section where optimization parameters are specified. This section is marked by the <code>&lt;optimization_parameters&gt;</code> tag.
+      Within this section, each optimization parameter is specified using the <code>&lt;parameter&gt;</code> tag. For our example, the first optimization parameter is given as:</p>
 
-    <p> The next step in the xml file is the section where optimization paramters are specified. This section is marked by the <code>&ltoptimization_parameters&gt</code> tag. 
-      Within this section an optimization parameters is specified using the <code>&parameter&gt</code> tag. For our example, the first optimization parameter is given as  
-    
-    </p>
+      <pre><code>&lt;parameter&gt;
+  &lt;name&gt;x1&lt;/name&gt;
+  &lt;type&gt;REAL&lt;/type&gt;
+  &lt;lower_bound&gt;-1.5&lt;/lower_bound&gt;
+  &lt;upper_bound&gt;1.5&lt;/upper_bound&gt;
+&lt;/parameter&gt;</code></pre>
 
-    <pre><code> 
-      &lt;parameter&gt;
-        &lt;name&gt;x1&lt;/name&gt;
-        &lt;type&gt;REAL&lt;/type&gt;
-        &lt;lower_bound&gt;-1.5&lt;/lower_bound&gt;
-        &lt;upper_bound&gt;1.5&lt;/upper_bound&gt;
-    &lt;/parameter&gt;
-  </code></pre>
+      <p>The lower and upper bounds of the variable are set using the <code>&lt;lower_bound&gt;</code> and <code>&lt;upper_bound&gt;</code> tags. The parameter is allowed to change continuously during the optimization,
+      so its type is set using the <code>&lt;type&gt;</code> tag.</p>
 
-<p>The lower and upper bounds of the variable is set using the <code>&ltlower_bound&gt</code> and <code>&ltupper_bound&gt</code> tags. The parameter is allowed be change continously during the optimization
-so its type is set using the <code>&lttype&gt</code> tag.</p>
-
-  </section> 
-
+    </section>
 
     <section id="run" class="panel">
       <h2>Running the test case</h2>
@@ -160,8 +170,6 @@ so its type is set using the <code>&lttype&gt</code> tag.</p>
       <pre><code>python plotResults.py</code></pre>
       <img src="./images/optimizationResults.png" alt="Optimization trajectory and results for Rosenbrock with constraints" class="responsive centered" />
     </section>
-
-
 
     <section id="xml" class="panel">
       <h2>XML Input File</h2>
@@ -221,12 +229,31 @@ so its type is set using the <code>&lttype&gt</code> tag.</p>
       <p><a href="./optimization_study.xml" download>Download optimization_study.xml</a></p>
     </section>
 
-
-
   </main>
 
   <footer>
     <div class="container">&copy; 2025. All rights reserved.</div>
   </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("pre").forEach((block) => {
+      const button = document.createElement("button");
+      button.className = "copy-btn";
+      button.innerText = "Copy";
+
+      button.addEventListener("click", () => {
+        const code = block.querySelector("code");
+        if (!code) return;
+        navigator.clipboard.writeText(code.innerText).then(() => {
+          button.innerText = "Copied!";
+          setTimeout(() => (button.innerText = "Copy"), 1500);
+        });
+      });
+
+      block.appendChild(button);
+    });
+  });
+  </script>
 </body>
 </html>
