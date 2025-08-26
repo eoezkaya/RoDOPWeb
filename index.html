@@ -8,39 +8,40 @@
 </head>
 
 <body>
-  <header>
-    <nav class="navbar" aria-label="Primary">
-      <a class="nav-left" href="./index.html" aria-label="RODOP+ home">
-        <img id="logo-on-navbar" src="./images/logo-wo-background.png" alt="RODOP+ logo" />
-      </a>
-      <ul class="nav-links">
-        <li><a href="./docs.html">Docs</a></li>
-        <li><a href="./tutorials.html">Tutorials</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header id="navbar-container"></header>
 
   <main>
     <section class="features-row">
-        <div id="rodop-plus-features">
-          <ul>
-            <li><strong>Design Space Exploration:</strong> RODOP+ helps you explore and optimize design spaces efficiently.</li>
-            <li><strong>Faster Development:</strong> ML-based optimization and smart scheduling cut time and cost.</li>
-            <li><strong>Rapid Deployment and Easy Maintenance:</strong> Users can start optimizing without having deep knowledge, modular approach to ease maintenance</li>
-            <li><strong>Multidisciplinary Optimization:</strong> Handles multiple disciplines and their interactions coherently.</li>
-            <li><strong>Hybrid Strategies:</strong> Can utilize gradient based strategies to boost optimization performace</li>
-          </ul>
-        </div>
-      
-        <div id="pareto-wrap">
-          <img src="./images/pareto.gif" alt="Pareto front demo animation" />
-        </div>
-      </section>
-      
+      <div id="rodop-plus-features">
+        <ul class="feature-list">
+          <li class="feature-explore"><strong>Design Space Exploration:</strong> rodop+ helps you explore and optimize design spaces efficiently.</li>
+          <li class="feature-speed"><strong>Accelerated Development:</strong> ML-based optimization and smart scheduling cut time and cost.</li>
+          <li class="feature-deploy"><strong>Seamless Deployment & Maintenance:</strong> Users can start optimizing without having deep knowledge, modular approach to ease maintenance</li>
+          <li class="feature-multi"><strong>Multidisciplinary Optimization:</strong> Handles multiple disciplines and their interactions coherently.</li>
+          <li class="feature-hybrid"><strong>Hybrid Strategies:</strong> Can utilize gradient based strategies to boost optimization performance</li>
+        </ul>
+      </div>
+
+      <div id="pareto-wrap">
+        <img src="./images/pareto.gif" alt="Pareto front demo animation" />
+      </div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("./navbar.html")
+        .then(r => r.text())
+        .then(html => {
+          const slot = document.getElementById("navbar-container");
+          if (slot) slot.innerHTML = html;
+        })
+        .catch(console.error);
+    });
+  </script>
 </body>
 </html>

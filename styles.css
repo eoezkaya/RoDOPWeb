@@ -108,3 +108,44 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Feature list with icons */
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 2rem;   /* space for the icon */
+  margin: 0.6rem 0;
+  line-height: 1.6;
+}
+
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+
+
+/* 🔮 Later you can easily assign unique icons per feature */
+.feature-explore::before { background-image: url("./images/map.svg"); }
+.feature-speed::before   { background-image: url("./images/speed.svg"); }
+.feature-deploy::before  { background-image: url("./images/rocket.svg"); }
+.feature-multi::before   { background-image: url("./images/category.svg"); }
+.feature-hybrid::before  { background-image: url("./images/tune.svg"); }
+
+
+
+
+
