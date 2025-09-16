@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./navbar.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./tutorials.css" />
+  <title>Robust Design Optimization Package: RODOP+</title>
+</head>
+
+<body>
+  <header id="navbar-container"></header>
+
+  <main>
+    <section>
+      <h1>Talks</h1>
+      <ul id="tutorial-list">
+        <li>
+          <a href="./files/1.pdf" download>
+            EUROGEN 2025
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("navbar.html")
+        .then(r => r.text())
+        .then(html => {
+          const slot = document.getElementById("navbar-container");
+          if (slot) slot.innerHTML = html;
+
+          // Optional: highlight current page in navbar
+          const links = slot.querySelectorAll("a");
+          links.forEach(link => {
+            if (link.href === window.location.href) {
+              link.classList.add("active");
+            }
+          });
+        })
+        .catch(console.error);
+    });
+  </script>
+</body>
+</html>
